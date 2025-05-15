@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useVuelidate from "@vuelidate/core";
-import { minLength } from "@vuelidate/validators";
+import { required, minLength } from "@vuelidate/validators";
 
 type SearchFormProps = {
   searchQuery: string;
@@ -27,7 +27,7 @@ const form = reactive<SearchFormProps>({
 });
 
 const rules = computed(() => ({
-  searchQuery: { minLength: minLength(3), noDoctorsFound },
+  searchQuery: { required, minLength: minLength(3), noDoctorsFound },
 }));
 
 const v$ = useVuelidate(rules, form);
