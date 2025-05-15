@@ -98,8 +98,13 @@ const handleSubmit = () => {
               <p v-if="v$.searchQuery.minLength.$invalid">
                 Debe tener al menos 3 caracteres.
               </p>
-              <p v-if="v$.searchQuery.noDoctorsFound.$invalid">
+              <p v-if="noDoctorsFound()">
                 No se encontraron doctores.
+              </p>
+            </div>
+            <div v-if="v$.searchQuery.$error" class="text-green-500 text-xs mt-2">
+              <p v-if="!noDoctorsFound()">
+                Doctores encontrados {{ props.doctorsCount }}.
               </p>
             </div>
             <button type="submit"

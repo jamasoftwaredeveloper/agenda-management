@@ -31,11 +31,9 @@ const onSearch = async (form: { searchQuery: string }) => {
     if (getSearchDoctors.value && Array.isArray(getSearchDoctors.value)) {
       doctors.value = getSearchDoctors.value;
     } else {
-      console.log("No se encontraron doctores o el formato de datos es incorrecto.");
       doctors.value = [];  // Deja la lista vacía si no hay resultados
     }
   } catch (error) {
-    console.log("Error al buscar doctores:", error);
     doctors.value = [];  // Deja la lista vacía si ocurre un error
   }
 };
@@ -47,7 +45,7 @@ const onSearch = async (form: { searchQuery: string }) => {
     <!-- Header -->
     <LandingHeader />
     <!-- SearchForm -->
-    <SearchInput @search="onSearch" :doctorsCount="doctors.value?.length || 0" />
+    <SearchInput :doctors-count="doctors.length" @search="onSearch" />
     <!-- Search Results -->
     <SearchResult :doctors="doctors" />
   </div>
